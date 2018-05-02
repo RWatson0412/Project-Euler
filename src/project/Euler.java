@@ -6,10 +6,12 @@ import java.util.Scanner;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class Euler {
 
 	public static void main(String[] args) {
+		Tools tool = new Tools();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Which question would you like to have answered?");
 		int i = scan.nextInt();
@@ -23,6 +25,8 @@ public class Euler {
 	public static int getAnswer(int i) {
 		if(i == 1) return firstAnswer();
 		if(i == 2) return secondAnswer();
+		if(i == 3) return thirdAnswer();
+		if(i == 4) return fourthAnswer();
 		return -1;
 	}
 	
@@ -61,17 +65,17 @@ public class Euler {
 		return ans;
 	}
 	public static int fourthAnswer() { //Find largest palindrome made from the product of two 3-digit numbers.
-		int ans = 0;
-		return ans;
-		
-	}
-	public boolean isPrime(int num) {
-		if(num < 2) return false;
-		if(num == 2) return true;
-		if(num % 2 == 0) return false;
-		for(int i = 3; i * i <= num; i += 2) {
-			if(num % i == 0) return false;
+		Tools tool = new Tools();
+		List<Integer> palList = new ArrayList<Integer>();
+		for(int i = 999; i >= 0; i--) {
+			for(int k = 999; k >= 0; k--) {
+				if(tool.isPalindrome(i * k)) {
+					palList.add(i * k);
+				}
+			}
 		}
-		return true;
+		return Collections.max(palList);
 	}
+	
+	
 }
