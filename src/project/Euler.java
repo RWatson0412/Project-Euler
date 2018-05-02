@@ -3,6 +3,9 @@
 package project;
 
 import java.util.Scanner;
+
+import javax.tools.Tool;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +28,9 @@ public class Euler {
 	public static int getAnswer(int i) {
 		if(i == 1) return firstAnswer();
 		if(i == 2) return secondAnswer();
-		if(i == 3) return thirdAnswer();
+		if(i == 3) return (int) thirdAnswer();
 		if(i == 4) return fourthAnswer();
+		if(i == 5) return fifthAnswer();
 		return -1;
 	}
 	
@@ -57,12 +61,17 @@ public class Euler {
 		}
 		return sum;
 	}
-	public static int thirdAnswer() { //Find largest prime of 600851475143. UNSOLVED
-		int ans = 0;
-		List <Integer> primes = new ArrayList();
-		BigInteger num = new BigInteger("600851475143");
-		BigInteger i = new BigInteger("600851475143");
-		return ans;
+	public static double thirdAnswer() { //Find largest prime of 600851475143.
+		long num = 600851475143L;
+		Tools tool = new Tools();
+		List <Long> primeFactors = new ArrayList<Long>();
+		for(long i = 3; i * i <= num; i += 2) {
+			if(tool.isPrime(i) && num % i == 0) {
+				primeFactors.add(i);
+			}
+		}
+		return Collections.max(primeFactors);
+		
 	}
 	public static int fourthAnswer() { //Find largest palindrome made from the product of two 3-digit numbers.
 		Tools tool = new Tools();
@@ -76,6 +85,19 @@ public class Euler {
 		}
 		return Collections.max(palList);
 	}
-	
+	public static int fifthAnswer() {
+		int smallest = 0;
+		for(int num = 2; num < 1000000000; num += 2520) {
+			boolean isMultiple = true;
+			for(int multiple = 11; multiple <= 20; multiple++) {
+				if(num % multiple != 0) isMultiple = false;
+				}
+			if(isMultiple == true) {
+				smallest = num;
+				break;
+			}
+		}
+		return smallest;
+	}
 	
 }
