@@ -3,6 +3,7 @@
 package project;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import javax.tools.Tool;
 
@@ -18,10 +19,15 @@ public class Euler {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Which question would you like to have answered?");
 		int i = scan.nextInt();
+		long startTime = System.nanoTime();
 		System.out.println("The answer to question #" + i + " is " + getAnswer(i));
 		if(getAnswer(i) == -1) {
 			System.out.println("It looks like that question either doesn't exist or hasn't been answered yet.");
 		}
+		long endTime = System.nanoTime();
+		long totalTime = endTime - startTime;
+		double seconds = (double) totalTime / 1000000000.0;
+		System.out.println("This program ran in " + seconds + " seconds.");
 		
 	}
 
@@ -31,7 +37,10 @@ public class Euler {
 		if(i == 3) return (int) thirdAnswer();
 		if(i == 4) return fourthAnswer();
 		if(i == 5) return fifthAnswer();
+		if(i == 6) return sixthAnswer();
+		if(i == 7) return seventhAnswer();
 		return -1;
+			
 	}
 	
 	public static int firstAnswer() { //Find the sum of all multiples of 3 and 5 below 1000
@@ -85,19 +94,61 @@ public class Euler {
 		}
 		return Collections.max(palList);
 	}
-	public static int fifthAnswer() {
-		int smallest = 0;
-		for(int num = 2; num < 1000000000; num += 2520) {
-			boolean isMultiple = true;
-			for(int multiple = 11; multiple <= 20; multiple++) {
-				if(num % multiple != 0) isMultiple = false;
-				}
-			if(isMultiple == true) {
-				smallest = num;
-				break;
+	public static int fifthAnswer() { //Find the smallest positive number that is evenly divisible by all numbers from 1 to 20.
+		int ans = 1;
+		Tools tool = new Tools();
+		for(int i = 0; i <= 20; i++) {
+			if(tool.isPrime(i)) {
+				System.out.println(i + " is prime.");
+				ans *= i;
 			}
 		}
-		return smallest;
+		return ans;
+	}
+	public static int sixthAnswer() { //Find the difference between the sum of the squares of the first 100 natural numbers and the square of the sum.
+		int squareOfSum = 0;
+		int sumOfSquare = 0;
+		for(int i = 1; i <= 100; i++) {
+			squareOfSum += i;
+			sumOfSquare += Math.pow(i, 2);
+		}
+		return (int) (Math.pow(squareOfSum, 2) - sumOfSquare);
+	}
+	public static int seventhAnswer() { //Find 10001st prime
+		int counter = 0;
+		int i = 2;
+		Tools test = new Tools();
+		while(counter < 10001) {
+			if(test.isPrime(i)) {
+				counter++;
+			}
+			i++;
+		}
+		return i - 1;		
 	}
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
