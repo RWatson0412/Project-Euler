@@ -40,6 +40,7 @@ public class Euler {
 		if(i == 6) return sixthAnswer();
 		if(i == 7) return seventhAnswer();
 		if(i == 8) return eigthAnswer();
+		if(i == 9) return ninthAnswer();
 		return -1;
 			
 	}
@@ -147,6 +148,8 @@ public class Euler {
 		return (int) largestProduct;
 	}
 	public static int ninthAnswer() {
+		
+	}
 
 
 
