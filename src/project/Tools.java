@@ -46,5 +46,9 @@ public class Tools {
 		}
 		return ans;
 	}
+	
+	public boolean isWhole(long x) {
+		return(Math.ceil(x) == Math.floor(x));
+	}
 
 }
