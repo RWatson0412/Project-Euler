@@ -416,7 +416,31 @@ public class Euler {
 		return sum;
 	}
 	public static long seventeenthAnswer() { //Find number of letters used to spell the numbers 1 through 1000 (not including spaces or hyphens)
-		
+		long ans = 0;
+		for(int i = 0; i <= 1000; i++) {
+			int k = i;
+			if(Integer.toString(k).length() == 4) {
+				int firstDigit = Integer.parseInt(Integer.toString(k).substring(0,1));
+				String temp = Tools.thousandsToWord(firstDigit);
+				ans += temp.length() - 1;
+				k = Integer.parseInt(Integer.toString(k).substring(1));
+			}
+			if(Integer.toString(k).length() == 3) {
+				int firstDigit = Integer.parseInt(Integer.toString(k).substring(0, 1));
+				String temp = Tools.hundredsToWord(firstDigit);
+				ans += temp.length() - 1;
+				k = Integer.parseInt(Integer.toString(k).substring(1));
+			}
+			if(Integer.toString(k).length() == 2) {
+				int firstDigit = Integer.parseInt(Integer.toString(k).substring(0, 1));
+				String temp = Tools.tensToWord(firstDigit);
+				ans += temp.length();
+				k = Integer.parseInt(Integer.toString(k).substring(1));
+			}
+			String temp = Tools.onesToWord(k);
+			ans += temp.length();
+		}
+		return ans;
 	}
 
 
