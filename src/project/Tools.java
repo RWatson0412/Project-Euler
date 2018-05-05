@@ -47,7 +47,7 @@ public class Tools {
 		return ans;
 	}
 	
-	public boolean isWhole(long x) {
+	public boolean isWhole(double x) {
 		return(Math.ceil(x) == Math.floor(x));
 	}
 
