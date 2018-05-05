@@ -1,5 +1,7 @@
 package project;
 
+import java.math.BigInteger;
+
 public class Tools {
 
 	public Tools() {
@@ -51,4 +53,19 @@ public class Tools {
 		return(Math.ceil(x) == Math.floor(x));
 	}
 
+	public int nextInCollatz(int x) {
+		if(x % 2 == 0) return x/2;
+		return x * 3 + 1;
+	}
+	
+	public static BigInteger factorial(int n) {
+		if(n < 0){ 
+			throw new IllegalArgumentException("Can not find the factorial of a negative number.");
+		}
+		BigInteger product = BigInteger.ONE;
+		for(int i = 2; i <= n; i++) {
+			product = product.multiply(BigInteger.valueOf(i));
+		}
+		return product;
+	}
 }
