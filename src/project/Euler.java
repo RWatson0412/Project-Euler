@@ -431,6 +431,11 @@ public class Euler {
 				ans += temp.length() - 1;
 				k = Integer.parseInt(Integer.toString(k).substring(1));
 			}
+			if(k < 20 && k > 9) {
+				String temp = Tools.teensToWord(k);
+				ans += temp.length();
+				k = 0;
+			}
 			if(Integer.toString(k).length() == 2) {
 				int firstDigit = Integer.parseInt(Integer.toString(k).substring(0, 1));
 				String temp = Tools.tensToWord(firstDigit);

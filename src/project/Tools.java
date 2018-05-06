@@ -70,62 +70,31 @@ public class Tools {
 	}
 	
 	public static String onesToWord(int n) {
-		switch(n) {
-		case 1 : return "one";
-		case 2 : return "two";
-		case 3 : return "three";
-		case 4 : return "four";
-		case 5 : return "five";
-		case 6 : return "six";
-		case 7 : return "seven";
-		case 8 : return "eight";
-		case 9 : return "nine";
-		}
-		return "";
+		if(n == 0) return "";
+		String[] ONES = {"one", "two", "three", "four","five","six","seven","eight","nine"};
+		return ONES[n - 1];
+	}
+	
+	public static String teensToWord(int n) {
+		if(n == 0) return "";
+		String[] TEENS = {"ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+		return TEENS[n - 10];
 	}
 	
 	public static String tensToWord(int n) {
-		switch(n) {
-		case 1 : return "ten";
-		case 2 : return "twenty";
-		case 3 : return "thirty";
-		case 4 : return "forty";
-		case 5 : return "fifty";
-		case 6 : return "sixty";
-		case 7 : return "seventy";
-		case 8 : return "eighty";
-		case 9 : return "ninty";
-		}
-		return "";
+		if(n == 0 || n == 1) return "";
+		String[] TENS = {"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninty"};
+		return TENS[n - 2];
 	}
-	
 	public static String hundredsToWord(int n) {
-		switch(n) {
-		case 1 : return "one hundred";
-		case 2 : return "two hundred";
-		case 3 : return "three hundred";
-		case 4 : return "four hundred";
-		case 5 : return "five hundred";
-		case 6 : return "six hundred";
-		case 7 : return "seven hundred";
-		case 8 : return "eight hundred";
-		case 9 : return "nine hundred";
-		}
-		return "";
+		if(n == 0) return "";
+		String[] HUNDREDS = {"one hundred","two hundred","three hundred","four hundred","five hundred","six hundred","seven hundred","eight hundred","nine hundred"};
+		return HUNDREDS[n - 1];
 	}
 	
 	public static String thousandsToWord(int n) {
-		switch(n) {
-		case 1 : return "one thousand";
-		case 2 : return "two thousand";
-		case 3 : return "three thousand";
-		case 4 : return "four thousand";
-		case 5 : return "five thousand";
-		case 6 : return "six thousand";
-		case 7 : return "seven thousand";
-		case 8 : return "eight thousand";
-		case 9 : return "nine thousand";
-		}
-		return "";
+		if(n == 0) return "";
+		String[] THOUSANDS = {"one thousand", "two thousand", "three thousand", "four thousand","five thousand","six thousand","seven thousand","eight thousand","nine thousand"};
+		return THOUSANDS[n - 1];
 	}
 }
