@@ -15,7 +15,6 @@ import java.util.Collections;
 public class Euler {
 
 	public static void main(String[] args) {
-		Tools tool = new Tools();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Which question would you like to have answered?");
 		int i = scan.nextInt();
@@ -32,35 +31,39 @@ public class Euler {
 	}
 
 	public static long getAnswer(int i) {
-		if(i == 1) return firstAnswer();
-		if(i == 2) return secondAnswer();
-		if(i == 3) return thirdAnswer();
-		if(i == 4) return fourthAnswer();
-		if(i == 5) return fifthAnswer();
-		if(i == 6) return sixthAnswer();
-		if(i == 7) return seventhAnswer();
-		if(i == 8) return eigthAnswer();
-		if(i == 9) return ninthAnswer();
-		if(i == 10) return tenthAnswer();
-		if(i == 11) return eleventhAnswer();
-		if(i == 12) return twelfthAnswer();
-		if(i == 13) return thirteenthAnswer();
-		if(i == 14) return fourteenthAnswer();
-		if(i == 15) return fifteenthAnswer();
-		if(i == 16) return sixteenthAnswer();
-		if(i == 17) return seventeenthAnswer();
+		if(i == 1) return p1();
+		if(i == 2) return p2();
+		if(i == 3) return p3();
+		if(i == 4) return p4();
+		if(i == 5) return p5();
+		if(i == 6) return p6();
+		if(i == 7) return p7();
+		if(i == 8) return p8();
+		if(i == 9) return p9();
+		if(i == 10) return p10();
+		if(i == 11) return p11();
+		if(i == 12) return p12();
+		if(i == 13) return p13();
+		if(i == 14) return p14();
+		if(i == 15) return p15();
+		if(i == 16) return p16();
+		if(i == 17) return p17();
+		if(i == 18) return p18();
+		if(i == 19) return p19();
+		if(i == 20) return p20();
+		if(i == 21) return p21();
 		return -1;
 			
 	}
 	
-	public static long firstAnswer() { //Find the sum of all multiples of 3 and 5 below 1000
+	public static long p1() { //Find the sum of all multiples of 3 and 5 below 1000
 		int sum = 0;
 		for(int i = 0; i < 1000; i++) {
 			if(i % 3 == 0 || i % 5 == 0) sum += i;
 		}
 		return sum;
 	}
-	public static long secondAnswer() { // Find the sum of even-valued terms under 4,000,000 in the Fibonnaci sequence.
+	public static long p2() { // Find the sum of even-valued terms under 4,000,000 in the Fibonnaci sequence.
 		int sum = 0;
 		List<Integer> fib = new ArrayList<Integer>();
 		fib.add(1);
@@ -80,7 +83,7 @@ public class Euler {
 		}
 		return sum;
 	}
-	public static long thirdAnswer() { //Find largest prime of 600851475143.
+	public static long p3() { //Find largest prime of 600851475143.
 		long num = 600851475143L;
 		Tools tool = new Tools();
 		List <Long> primeFactors = new ArrayList<Long>();
@@ -92,7 +95,7 @@ public class Euler {
 		return Collections.max(primeFactors);
 		
 	}
-	public static long fourthAnswer() { //Find largest palindrome made from the product of two 3-digit numbers.
+	public static long p4() { //Find largest palindrome made from the product of two 3-digit numbers.
 		Tools tool = new Tools();
 		List<Integer> palList = new ArrayList<Integer>();
 		for(int i = 999; i >= 0; i--) {
@@ -104,7 +107,7 @@ public class Euler {
 		}
 		return Collections.max(palList);
 	}
-	public static long fifthAnswer() { //Find the smallest positive number that is evenly divisible by all numbers from 1 to 20.
+	public static long p5() { //Find the smallest positive number that is evenly divisible by all numbers from 1 to 20.
 		int ans = 1;
 		Tools tool = new Tools();
 		for(int i = 0; i <= 20; i++) {
@@ -115,7 +118,7 @@ public class Euler {
 		}
 		return ans;
 	}
-	public static long sixthAnswer() { //Find the difference between the sum of the squares of the first 100 natural numbers and the square of the sum.
+	public static long p6() { //Find the difference between the sum of the squares of the first 100 natural numbers and the square of the sum.
 		int squareOfSum = 0;
 		int sumOfSquare = 0;
 		for(int i = 1; i <= 100; i++) {
@@ -124,7 +127,7 @@ public class Euler {
 		}
 		return (int) (Math.pow(squareOfSum, 2) - sumOfSquare);
 	}
-	public static long seventhAnswer() { //Find 10001st prime
+	public static long p7() { //Find 10001st prime
 		int counter = 0;
 		int i = 2;
 		Tools test = new Tools();
@@ -136,7 +139,7 @@ public class Euler {
 		}
 		return i - 1;		
 	}
-	public static long eigthAnswer() { //Find highest product of 13 consecutive numbers.
+	public static long p8() { //Find highest product of 13 consecutive numbers.
 		String bigNumber = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";
 		long largestProduct = 0;
 		List <Long> temp = new ArrayList <Long>();
@@ -155,7 +158,7 @@ public class Euler {
 		long l = Collections.max(temp);
 		return (int) largestProduct;
 	}
-	public static long ninthAnswer() { //Find Pythagorean triple (natural numbers where a^2 + b^2 = c^2) where a+b+c=1000
+	public static long p9() { //Find Pythagorean triple (natural numbers where a^2 + b^2 = c^2) where a+b+c=1000
 		int sum = 1000;
 		for(int a = 1; a <= sum / 3; a++) {
 			for(int b = a + 1; b <= sum / 2; b++) {
@@ -168,7 +171,7 @@ public class Euler {
 		}
 		return 0;
 	}
-	public static long tenthAnswer() { //Find sum of all primes under 2,000,000
+	public static long p10() { //Find sum of all primes under 2,000,000
 		long sum = 2;
 		Tools tool = new Tools();
 		for(int i = 1; i <= 2000000; i += 2) {
@@ -178,7 +181,7 @@ public class Euler {
 		}
 		return sum;
 	}
-	public static long eleventhAnswer() { //Find greatest product of 4 adjacent numbers (can be horizontal, vertical, or diagonal)
+	public static long p11() { //Find greatest product of 4 adjacent numbers (can be horizontal, vertical, or diagonal)
 		int grid [][] = {
 				{8,02,22,97,38,15,00,40,00,75,04,05,07,78,52,12,50,77,91,8},
 		        {49,49,99,40,17,81,18,57,60,87,17,40,98,43,69,48,04,56,62,00},
@@ -232,7 +235,7 @@ public class Euler {
 		}
 		return highest;
 	}
-	public static long twelfthAnswer() { //BROKEN Find first triangle number that has 500 divisors
+	public static long p12() { //BROKEN Find first triangle number that has 500 divisors
 		
 		long triangleNumber = 0;
 		boolean solved = false;
@@ -258,7 +261,7 @@ public class Euler {
 		return triangleNumber;
 
 	    }
-	public static long thirteenthAnswer() { //Find first 10 digits of the sum of the large number provided.
+	public static long p13() { //Find first 10 digits of the sum of the large number provided.
 		BigInteger sum = BigInteger.ZERO;
 		String input[] = {"37107287533902102798797998220837590246510135740250",
 				"46376937677490009712648124896970078050417018260538",
@@ -368,7 +371,7 @@ public class Euler {
 		System.out.println(sum.toString().substring(0, 10));
 		return 0;
 	}
-	public static long fourteenthAnswer() { //Find longest Collatz Chain (if n is even, next = n/2. if n is odd, next = 3n+1)
+	public static long p14() { //Find longest Collatz Chain (if n is even, next = n/2. if n is odd, next = 3n+1)
 		long largest = 0;
 		long longestSeq = 0;
 		List <Long> collatzSeq = new ArrayList <Long>();
@@ -396,12 +399,12 @@ public class Euler {
 		}
 		return largest;
 	}
-	public static long fifteenthAnswer() { //Find number of paths from top right to bottom left of 20x20 grid (using formula (a)!/(a-b!)b!))
+	public static long p15() { //Find number of paths from top right to bottom left of 20x20 grid (using formula (a)!/(a-b!)b!))
 		String ans =  Tools.factorial(40).divide(Tools.factorial(40 - 20).multiply(Tools.factorial(20))).toString();
 		long fin = Long.parseLong(ans);
 		return fin;
 	}
-	public static long sixteenthAnswer() { //Find sum of all digits in the result of 2^1000
+	public static long p16() { //Find sum of all digits in the result of 2^1000
 		BigInteger power = BigInteger.valueOf(2);
 		power = power.pow(1000);
 		String result = power.toString();
@@ -415,7 +418,7 @@ public class Euler {
 		}
 		return sum;
 	}
-	public static long seventeenthAnswer() { //Find number of letters used to spell the numbers 1 through 1000 (not including spaces or hyphens)
+	public static long p17() { //BROKEN Find number of letters used to spell the numbers 1 through 1000 (not including spaces or hyphens)
 		long ans = 0;
 		for(int i = 0; i <= 1000; i++) {
 			int k = i;
@@ -447,8 +450,53 @@ public class Euler {
 		}
 		return ans;
 	}
-
-
+	public static long p18() {
+		return -1;
+	}
+	public static long p19() {
+		return -1;
+	}
+	public static long p20() { // Find sum of all digits in 100!
+		BigInteger product = BigInteger.ONE;
+		for(int i = 2; i <= 100; i++) {
+			product = product.multiply(BigInteger.valueOf(i));
+		}
+		String ans = product.toString();
+		long total = 0;
+		for(int i = 0; i < ans.length() - 1; i++) {
+			Character c = ans.charAt(i);
+			String temp = c.toString();
+			total += Integer.parseInt(temp);
+		}
+		return total;
+	}
+	public static long p21() {
+		List<Integer> amicableNum = new ArrayList<Integer>();
+		for(int i = 0; i < 10000; i++) {
+			List<Integer> firstNum = new ArrayList<Integer>();
+			int firstTotal = 0;
+			for(int k = i; k > 0; k--) {
+				if(i % k == 0) {
+					firstNum.add(k);
+					firstTotal += k;
+				}
+			}
+			List<Integer> secondNum = new ArrayList<Integer>();
+			int secondTotal = 0;
+			for(int j = firstTotal; j > 0; j--) {
+				if(firstTotal % j == 0) {
+					secondNum.add(j);
+					secondTotal += j;
+				}
+			}
+			if(i  == secondTotal){
+				amicableNum.add(i);
+				amicableNum.add(firstTotal);
+				System.out.println(amicableNum);
+			}
+		}
+		return 0;
+	}
 
 
 
