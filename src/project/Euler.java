@@ -3,18 +3,17 @@
 package project;
 
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
-
-import javax.tools.Tool;
-
+import java.io.*;
 import java.math.BigInteger;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
 
 public class Euler {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Which question would you like to have answered?");
 		int i = scan.nextInt();
@@ -30,7 +29,7 @@ public class Euler {
 		
 	}
 
-	public static long getAnswer(int i) {
+	public static long getAnswer(int i) throws Exception {
 		if(i == 1) return p1();
 		if(i == 2) return p2();
 		if(i == 3) return p3();
@@ -52,6 +51,7 @@ public class Euler {
 		if(i == 19) return p19();
 		if(i == 20) return p20();
 		if(i == 21) return p21();
+		if(i == 22) return p22();
 		return -1;
 			
 	}
@@ -497,7 +497,34 @@ public class Euler {
 		}
 		return 0;
 	}
-
+	public static long p22() throws Exception{ //Sort p022_names.txt, find a names place, multiply by the name's value (A=1, z=24) and return sum of all.
+		File file = new File("C:\\Users\\Ryan-LTW\\Documents\\Personal Files\\p022_names.txt");
+		BufferedReader br = new BufferedReader(new FileReader(file));
+		String st = br.readLine();
+		br.close();
+		String name = "";
+		List<String> names = new ArrayList<String>();
+		//Move through text file character by character to build the names
+		for(int i = 0; i < st.length();i++){
+			char c = st.charAt(i);
+			if(Tools.isAlpha(c)) {
+				name += c;
+			} else {
+				names.add(name);
+				name = "";
+			}
+		}
+		Collections.sort(names);
+		for(int i = 0; i < names.size()/2; i++) {
+			names.remove(i);
+			names.remove(i);
+			System.out.println(names.size());
+		}
+		for(int i = 0; i < names.size(); i++) {
+			System.out.println(names.get(i));
+		}
+		return 0;
+	}
 
 
 
