@@ -3,6 +3,7 @@
 package project;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.io.*;
 import java.math.BigInteger;
 import java.nio.file.Path;
@@ -10,7 +11,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 public class Euler {
 
 	public static void main(String[] args) throws Exception {
@@ -52,6 +54,9 @@ public class Euler {
 		if(i == 20) return p20();
 		if(i == 21) return p21();
 		if(i == 22) return p22();
+//		if(i == 24) return p24();
+		if(i == 25) return p25();
+//		if(i == 26) return p26();
 		return -1;
 			
 	}
@@ -236,30 +241,18 @@ public class Euler {
 		return highest;
 	}
 	public static long p12() { //BROKEN Find first triangle number that has 500 divisors
-		
-		long triangleNumber = 0;
-		boolean solved = false;
-		List<Integer> divisors = new ArrayList <Integer>();
-		int i = 0;
-		Tools tool = new Tools();
-		int highest = 0;
-		
-		while(!solved) {
-			divisors.clear();
-			i++;
-			triangleNumber += i;
-			for(int k = 1; k < Math.sqrt(triangleNumber) + 1; k++) {
-				if(tool.isWhole((double) triangleNumber / (double) k)) divisors.add(k);
-				}
-			if(divisors.size() >= 500) solved = true;
-			if(divisors.size() > highest) highest = divisors.size();
-//			System.out.println(i + " | " + triangleNumber + " | " + divisors);
-//			System.out.println("Number of divisors: " + divisors.size());
-//			System.out.println(i + "    " + divisors.size() + "    " + highest);
+		List<Long> lastNum = new ArrayList<Long>();
+		lastNum.add((long) 1);
+		lastNum.add((long) 3);
+		for(long l = 2; l < Long.MAX_VALUE; l += lastNum.get(lastNum.size() - 1)) {
+			List<Long> divisors = new ArrayList<Long>();
+			for(long i = 1; i < l; i++) {
+				if(l % i == 0) divisors.add(i);
 			}
-		
-		return triangleNumber;
-
+			if(divisors.size() >= 500) return l;
+			System.out.println(l + " | " + divisors.size());
+		}
+		return 0;
 	    }
 	public static long p13() { //Find first 10 digits of the sum of the large number provided.
 		BigInteger sum = BigInteger.ZERO;
@@ -498,34 +491,67 @@ public class Euler {
 		return 0;
 	}
 	public static long p22() throws Exception{ //Sort p022_names.txt, find a names place, multiply by the name's value (A=1, z=24) and return sum of all.
-		File file = new File("C:\\Users\\Ryan-LTW\\Documents\\Personal Files\\p022_names.txt");
+//		File file = new File("C:\\Users\\Ryan-LTW\\Documents\\Personal Files\\p022_names.txt");
+		File file = new File("E:\\Documents\\p022_names.txt");
+		ArrayList<String> names = new ArrayList<String>();
 		BufferedReader br = new BufferedReader(new FileReader(file));
-		String st = br.readLine();
-		br.close();
-		String name = "";
-		List<String> names = new ArrayList<String>();
-		//Move through text file character by character to build the names
-		for(int i = 0; i < st.length();i++){
-			char c = st.charAt(i);
-			if(Tools.isAlpha(c)) {
-				name += c;
-			} else {
-				names.add(name);
-				name = "";
+		String line = "";
+		while((line = br.readLine()) != null) {
+			String[] dataNames = line.split(",");
+			for(String item : dataNames) {
+				String newItem = item.substring(1, item.length() - 1);
+				names.add(newItem);
 			}
 		}
+		br.close();
 		Collections.sort(names);
-		for(int i = 0; i < names.size()/2; i++) {
-			names.remove(i);
-			names.remove(i);
-			System.out.println(names.size());
-		}
+		long bigSum = 0;
+		int mult = 1;
 		for(int i = 0; i < names.size(); i++) {
-			System.out.println(names.get(i));
-		}
-		return 0;
-	}
+			int x = valueOfName(names.get(i));
+			mult = x * (i + 1);
 
+            bigSum += mult;
+        }
+
+        System.out.println("Sum: " + bigSum);
+		return bigSum;
+    }
+	public static int valueOfName(String s) {
+        char[] ABC = {'1', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+        char[] tempName = s.toCharArray();
+
+        int sum = 0;
+        for (char c : tempName) {
+            for (int j = 0; j < ABC.length; j++) {
+                if (c == ABC[j])
+                    sum += j;
+            }
+        }
+        return sum;
+    }
+	public static int p25() { //Find first index of first digit in Fibonnaci sequence to have 1000 digits
+		List<String> nums = new ArrayList<String>();
+		nums.add(Integer.toString(1));
+		nums.add(Integer.toString(1));
+		int size = nums.get(nums.size() - 1).length();
+//		System.out.println(size);
+		while(size < 1000) {
+			String previous = nums.get(nums.size() - 1);
+			String previouser = nums.get(nums.size() - 2);
+			BigInteger lastNum = new BigInteger(previous);
+			BigInteger lasterNum = new BigInteger(previouser);
+			BigInteger nextNum = lastNum.add(lasterNum);
+			String next = nextNum.toString();
+			nums.add(next);
+			size = nums.get(nums.size() - 1).length();
+		}
+		return nums.size();
+	}
+//	public static int p26() {
+//		
+//	}
 
 
 

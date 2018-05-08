@@ -44,7 +44,7 @@ public class Tools {
 	public boolean isWhole(double x) {
 		return(Math.ceil(x) == Math.floor(x));
 	}
-public int nextInCollatz(int x) {
+	public int nextInCollatz(int x) {
 		if(x % 2 == 0) return x/2;
 		return x * 3 + 1;
 	}
