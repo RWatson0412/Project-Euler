@@ -57,6 +57,9 @@ public class Euler {
 //		if(i == 24) return p24();
 		if(i == 25) return p25();
 //		if(i == 26) return p26();
+		if(i == 29) return p29();
+		if(i == 40) return p40();
+		if(i == 48) return p48();
 		return -1;
 			
 	}
@@ -549,11 +552,47 @@ public class Euler {
 		}
 		return nums.size();
 	}
-//	public static int p26() {
-//		
-//	}
-
-
+	public static int p29() throws InterruptedException {
+		List<BigInteger> nums = new ArrayList<BigInteger>();
+		for(int i = 2; i <= 100; i++) {
+			BigInteger num = BigInteger.valueOf(i);
+			for(int k = 2; k <= 100; k++) {
+				nums.add(num.pow(k));
+			}
+		}
+		Collections.sort(nums);
+		List<BigInteger> ans = new ArrayList<BigInteger>();
+		for(int i = 0; i < nums.size(); i++) {
+			if(!ans.contains(nums.get(i))) ans.add(nums.get(i));
+		}
+		return ans.size();
+	}
+	public static int p40() throws InterruptedException { //Find the product of the 1, 10, 100... 1000000 digits of decimal
+		StringBuilder num = new StringBuilder();
+		for(int i = 0; i < 1000000; i++) {
+			num.append(i);
+		}
+		int product = 1;
+		product *= num.charAt(3);
+		product *= num.charAt(12);
+		product *= num.charAt(102);
+		product *= num.charAt(1002);
+		product *= num.charAt(10002);
+		product *= num.charAt(100002);
+		product *= num.charAt(1000002);
+		return product;
+	}
+	public static int p48() { //Find sum of 1^1 + 2^2 + 3^3 + ... 1000^1000 and return the last 10 digits of the answer
+		BigInteger nums = BigInteger.valueOf(0);
+		for(int i = 1; i < 1000; i++) {
+			BigInteger power = BigInteger.valueOf(i);
+			power = power.pow(i);
+			nums = nums.add(power);
+		}
+		String temp = nums.toString();
+		int ans = Integer.valueOf(temp.substring(temp.length() - 10));
+		return ans;
+	}
 
 
 
